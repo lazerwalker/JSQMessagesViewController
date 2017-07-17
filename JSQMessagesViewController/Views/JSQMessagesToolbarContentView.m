@@ -25,8 +25,6 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
 @interface JSQMessagesToolbarContentView ()
 
-@property (weak, nonatomic) IBOutlet JSQMessagesComposerTextView *textView;
-
 @property (weak, nonatomic) IBOutlet UIView *leftBarButtonContainerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftBarButtonContainerViewWidthConstraint;
 
@@ -35,6 +33,8 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftHorizontalSpacingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightHorizontalSpacingConstraint;
+
+@property (weak, nonatomic) IBOutlet UIView *textViewContainerView;
 
 @end
 
@@ -61,6 +61,9 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     self.leftHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
     self.rightHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
 
+    self.textView = [[JSQMessagesComposerTextView alloc] initWithFrame:CGRectZero
+                                                         textContainer:nil];
+
     self.backgroundColor = [UIColor clearColor];
 }
 
@@ -71,6 +74,8 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     [super setBackgroundColor:backgroundColor];
     self.leftBarButtonContainerView.backgroundColor = backgroundColor;
     self.rightBarButtonContainerView.backgroundColor = backgroundColor;
+    self.textViewContainerView.backgroundColor = backgroundColor;
+
 }
 
 - (void)setLeftBarButtonItem:(UIButton *)leftBarButtonItem
@@ -157,6 +162,12 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 {
     self.leftHorizontalSpacingConstraint.constant = leftContentPadding;
     [self setNeedsUpdateConstraints];
+}
+
+- (void)setTextView:(JSQMessagesComposerTextView *)textView {
+    _textView = textView;
+    [self.textViewContainerView addSubview:textView];
+    [self.textViewContainerView jsq_pinAllEdgesOfSubview:textView];
 }
 
 #pragma mark - Getters
