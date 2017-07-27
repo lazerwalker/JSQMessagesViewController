@@ -282,7 +282,7 @@
 - (NSDictionary *)jsq_placeholderTextAttributes
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     paragraphStyle.alignment = self.textAlignment;
 
     return @{ NSFontAttributeName : self.font,
