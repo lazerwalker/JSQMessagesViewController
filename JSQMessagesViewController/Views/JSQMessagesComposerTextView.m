@@ -123,18 +123,37 @@
 {
     [super layoutSubviews];
 
+
+
+    CGRect rect = self.frame;
+
+    NSDictionary *attributes = self.jsq_placeholderTextAttributes;
+
+    CGFloat offsetX = 7.0f;
+    CGFloat offsetY = 5.0f;
+
+    NSStringDrawingContext *context = [NSStringDrawingContext new];
+    context.minimumScaleFactor = 1.0;
+
+    CGRect insetRect = CGRectInset(rect, offsetX, offsetY);
+    insetRect.size.height = MAXFLOAT;
+
+    CGRect placeholderRect = [self.placeHolder boundingRectWithSize:insetRect.size
+                                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                                         attributes:attributes
+                                                            context:context];
+    CGRect adjustedPlaceholderRect = CGRectInset(placeholderRect, -offsetX, -offsetY);
+    adjustedPlaceholderRect.size.width = ceil(adjustedPlaceholderRect.size.width);
+    adjustedPlaceholderRect.size.height = ceil(adjustedPlaceholderRect.size.height);
+
     // calculate size needed for the text to be visible without scrolling
     CGSize sizeThatFits = [self sizeThatFits:self.frame.size];
-    float newHeight = sizeThatFits.height;
+
+    float newHeight = MAX(sizeThatFits.height, adjustedPlaceholderRect.size.height);
 
     // if there is any minimal height constraint set, make sure we consider that
     if (self.maxHeightConstraint) {
         newHeight = MIN(newHeight, self.maxHeightConstraint.constant);
-    }
-
-    // if there is any maximal height constraint set, make sure we consider that
-    if (self.minHeightConstraint) {
-        newHeight = MAX(newHeight, self.minHeightConstraint.constant);
     }
 
     // update the height constraint
@@ -158,6 +177,7 @@
 
     _placeHolder = [placeHolder copy];
     [self setNeedsDisplay];
+    [self setNeedsLayout];
 }
 
 - (void)setPlaceHolderTextColor:(UIColor *)placeHolderTextColor
@@ -231,11 +251,11 @@
 
     if (self.placeHolder) {
         [self.placeHolderTextColor set];
-        
         [self.placeHolder drawInRect:UIEdgeInsetsInsetRect(rect, self.placeHolderInsets)
                       withAttributes:[self jsq_placeholderTextAttributes]];
     }
 }
+
 
 #pragma mark - Notifications
 
