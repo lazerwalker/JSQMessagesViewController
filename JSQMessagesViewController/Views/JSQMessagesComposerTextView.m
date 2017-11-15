@@ -158,7 +158,6 @@
 
     _placeHolder = [placeHolder copy];
     [self setNeedsDisplay];
-    [self setNeedsLayout];
 }
 
 - (void)setPlaceHolderTextColor:(UIColor *)placeHolderTextColor
@@ -176,7 +175,7 @@
     if (UIEdgeInsetsEqualToEdgeInsets(placeHolderInsets, _placeHolderInsets)) {
         return;
     }
-
+    
     _placeHolderInsets = placeHolderInsets;
     [self setNeedsDisplay];
 }
@@ -232,41 +231,10 @@
 
     if (self.placeHolder) {
         [self.placeHolderTextColor set];
+        
         [self.placeHolder drawInRect:UIEdgeInsetsInsetRect(rect, self.placeHolderInsets)
                       withAttributes:[self jsq_placeholderTextAttributes]];
     }
-}
-
-- (void)layoutSubviews {
-    CGRect rect = self.frame;
-
-    NSDictionary *attributes = self.jsq_placeholderTextAttributes;
-
-    CGFloat offsetX = 7.0f;
-    CGFloat offsetY = 5.0f;
-
-    NSStringDrawingContext *context = [NSStringDrawingContext new];
-    context.minimumScaleFactor = 1.0;
-
-    CGRect insetRect = CGRectInset(rect, offsetX, offsetY);
-    insetRect.size.height = MAXFLOAT;
-
-    CGRect placeholderRect = [self.placeHolder boundingRectWithSize:insetRect.size
-                                                            options:NSStringDrawingUsesLineFragmentOrigin
-                                                         attributes:attributes
-                                                            context:context];
-    CGRect adjustedPlaceholderRect = CGRectInset(placeholderRect, -offsetX, -offsetY);
-    adjustedPlaceholderRect.size.width = ceil(adjustedPlaceholderRect.size.width);
-    adjustedPlaceholderRect.size.height = ceil(adjustedPlaceholderRect.size.height);
-
-    if (CGRectGetHeight(adjustedPlaceholderRect) > CGRectGetHeight(rect)) {
-        rect = adjustedPlaceholderRect;
-    }
-
-    self.contentSize = rect.size;
-    self.frame = rect;
-
-    [super layoutSubviews];
 }
 
 #pragma mark - Notifications
