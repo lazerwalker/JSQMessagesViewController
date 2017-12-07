@@ -168,6 +168,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     _textView = textView;
     [self.textViewContainerView addSubview:textView];
     [self.textViewContainerView jsq_pinAllEdgesOfSubview:textView];
+    [textView associateConstraints];
 }
 
 #pragma mark - Getters

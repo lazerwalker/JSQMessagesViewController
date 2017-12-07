@@ -72,6 +72,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)hasText;
 
+- (void)associateConstraints;
+
 @end
 
 NS_ASSUME_NONNULL_END

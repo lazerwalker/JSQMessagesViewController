@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13529"/>
-        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,7 +31,7 @@
                         <constraint firstAttribute="width" constant="50" id="yde-S9-dHe"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJY-BH-FBA">
+                <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bJY-BH-FBA">
                     <rect key="frame" x="50" y="7" width="204" height="30"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -42,14 +41,15 @@
             </subviews>
             <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="bJY-BH-FBA" secondAttribute="bottom" constant="7" id="37A-p4-7Lz"/>
                 <constraint firstItem="Myo-1S-Vg1" firstAttribute="leading" secondItem="bJY-BH-FBA" secondAttribute="trailing" constant="8" id="DaM-3v-O6y"/>
                 <constraint firstAttribute="bottom" secondItem="Myo-1S-Vg1" secondAttribute="bottom" constant="6" id="EaS-Oq-Qp5"/>
                 <constraint firstItem="bJY-BH-FBA" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="Gpn-Xf-7xH"/>
+                <constraint firstItem="bJY-BH-FBA" firstAttribute="top" secondItem="1" secondAttribute="top" constant="7" id="KC2-hR-TT7"/>
                 <constraint firstItem="LEq-G7-jGt" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="LAU-fo-GJJ"/>
                 <constraint firstItem="bJY-BH-FBA" firstAttribute="leading" secondItem="LEq-G7-jGt" secondAttribute="trailing" constant="8" id="LAX-rT-XWY"/>
                 <constraint firstAttribute="trailing" secondItem="Myo-1S-Vg1" secondAttribute="trailing" constant="8" id="ds6-61-GNv"/>
                 <constraint firstAttribute="leading" secondItem="LEq-G7-jGt" secondAttribute="trailing" constant="8" id="gbl-kO-E7r"/>
-                <constraint firstAttribute="top" secondItem="1" secondAttribute="top" constant="7" id="jEh-xG-bFa"/>
                 <constraint firstAttribute="bottom" secondItem="LEq-G7-jGt" secondAttribute="bottom" constant="6" id="oG2-YD-ZZI"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
