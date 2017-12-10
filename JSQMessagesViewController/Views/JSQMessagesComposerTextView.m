@@ -68,7 +68,7 @@
 
     _placeHolder = nil;
     _placeHolderTextColor = [UIColor lightGrayColor];
-    _placeHolderInsets = UIEdgeInsetsMake(5.0, 7.0, 5.0, 7.0);
+    _placeHolderInsets = UIEdgeInsetsMake(4.0, 7.0, 5.0, 7.0);
 
     [self associateConstraints];
 
